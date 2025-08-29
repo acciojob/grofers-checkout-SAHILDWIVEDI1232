@@ -3,19 +3,28 @@ function calculateTotal() {
   let total = 0;
 
   priceElements.forEach((price) => {
-    total += Number(price.textContent);
+    total += Number(price.textContent.trim());
   });
-const totalRow = document.createElement("tr");
 
-const labelCell = document.createElement("td");
-labelCell.textContent = "Total";
+ 
+  const oldTotalRow = document.getElementById("totalRow");
+  if (oldTotalRow) {
+    oldTotalRow.remove();
+  }
 
-const totalCell = document.createElement("td");
-totalCell.textContent = total;
+  const totalRow = document.createElement("tr");
+  totalRow.id = "totalRow";
 
-totalRow.appendChild(labelCell);
-totalRow.appendChild(totalCell);
+  const labelCell = document.createElement("td");
+  labelCell.textContent = "Total";
 
-const table = document.querySelector("table");
-table.appendChild(totalRow);
-document.querySelector("button").addEventListener("click", calculateTotal);
+  const totalCell = document.createElement("td");
+  totalCell.textContent = total;
+  totalCell.id = "ans";
+
+  totalRow.appendChild(labelCell);
+  totalRow.appendChild(totalCell);
+
+  const table = document.querySelector("table");
+  table.appendChild(totalRow);
+}
